@@ -1,0 +1,77 @@
+[package]
+name = "embassy-2181"
+version = "0.0.1"
+description = "ERROR panicked at 'BufferedUarte overrun' on NRF52840"
+authors = ["SJ <suresh@vicarasolutions.com>"]
+edition = "2021"
+publish = false
+
+[features]
+default = [
+    "nightly",
+    "ble-l2cap",
+    "ble-gatt-server",
+    "ble-gatt-client",
+    "ble-sec",
+]
+nightly = [
+    "embassy-executor/nightly",
+    "embassy-nrf/nightly",
+    "embedded-io/async",
+]
+
+ble-l2cap = ["nrf-softdevice/ble-l2cap"]
+ble-gatt-server = ["nrf-softdevice/ble-gatt-server"]
+ble-gatt-client = ["nrf-softdevice/ble-gatt-client"]
+ble-sec = ["nrf-softdevice/ble-sec"]
+
+[dependencies]
+embassy-futures = { git = "https://github.com/embassy-rs/embassy" }
+embassy-executor = { git = "https://github.com/embassy-rs/embassy", features = [
+    "arch-cortex-m",
+    "executor-thread",
+    "executor-interrupt",
+    "defmt",
+    "integrated-timers",
+] }
+embassy-nrf = { git = "https://github.com/embassy-rs/embassy", features = [
+    "defmt",
+    "nrf52840",
+    "time-driver-rtc1",
+    "gpiote",
+    "unstable-pac",
+    "time",
+] }
+embassy-sync = { git = "https://github.com/embassy-rs/embassy", features = [
+    "defmt",
+] }
+embassy-time = { git = "https://github.com/embassy-rs/embassy", features = [
+    "defmt",
+    "defmt-timestamp-uptime",
+] }
+embedded-io = "0.4.0"
+embedded-io-async = { version = "0.6.0", features = ["defmt-03"] }
+nrf-softdevice = { git = "https://github.com/embassy-rs/nrf-softdevice", features = [
+    "ble-central",
+    "ble-gatt-client",
+    "ble-gatt-server",
+    "ble-peripheral",
+    "defmt",
+    "critical-section-impl",
+    "nrf52840",
+    "s140",
+] }
+nrf-softdevice-s140 = { git = "https://github.com/embassy-rs/nrf-softdevice" }
+
+defmt = "0.3"
+defmt-rtt = "0.4"
+
+cortex-m = { version = "0.7.7", features = [
+    "inline-asm",
+    # "critical-section-single-core",
+] }
+cortex-m-rt = "0.7.0"
+panic-probe = { version = "0.3", features = ["print-defmt"] }
+
+heapless = "0.7"
+static_cell = "1.2"
