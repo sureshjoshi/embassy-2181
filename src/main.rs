@@ -5,15 +5,15 @@
 
 use defmt::{info, *};
 use embassy_executor::Spawner;
-use embassy_nrf::buffered_uarte::{self, BufferedUarte, BufferedUarteRx, BufferedUarteTx};
-use embassy_nrf::gpio::{Level, Output, OutputDrive};
+use embassy_nrf::buffered_uarte::{self, BufferedUarte, BufferedUarteRx};
+
 use embassy_nrf::interrupt::{self, InterruptExt};
-use embassy_nrf::uarte::Uarte;
+
 use embassy_nrf::{bind_interrupts, peripherals, uarte};
-use embassy_sync::blocking_mutex::raw::{CriticalSectionRawMutex, ThreadModeRawMutex};
-use embassy_sync::channel::Channel;
+
+
 use embassy_time::{Duration, Timer};
-use embedded_io_async::Write;
+
 use heapless::Vec;
 use nrf_softdevice::{raw, Config, Softdevice};
 use static_cell::StaticCell;
