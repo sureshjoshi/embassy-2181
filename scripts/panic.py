@@ -4,7 +4,7 @@ import time
 PORT = '/dev/ttyUSB1'
 BAUDRATE = 921600
 NUMBER_OF_BYTES = 2048
-FAST_PANIC = True
+FAST_PANIC = False
 
 def main():
     with serial.Serial(PORT, BAUDRATE, rtscts=True) as ser:
@@ -21,7 +21,7 @@ def main():
             for i in range(0, NUMBER_OF_BYTES):
                 print(f"Sleep and write byte {i}")
                 time.sleep(1)
-                ser.write(bytes([i]))
+                ser.write(bytes([i % 256]))
 
         
 
