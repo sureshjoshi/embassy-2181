@@ -80,7 +80,7 @@ async fn main(spawner: Spawner) {
     ));
 
     // --- Start Softdevice Tasks ---
-    let sd = initialize("PanicAtTheDisco");
+    let sd = initialize("Panic");
     // let server = SERVER.init(Server::new(sd).unwrap());
     unwrap!(spawner.spawn(softdevice_task(sd)));
 
